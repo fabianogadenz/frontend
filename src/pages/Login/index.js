@@ -1,41 +1,48 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import api from '../../services/api';
 
-export default function Login({history}){
-    const [email, setEmail] = useState('')
+export default function Login({ history }) {
+  const [password, setPassword] = useState('')
+  const [ra, setRa] = useState('')
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(email);
-    const response = await api.post('/sessions', {
-      email: email
+    const response = await api.post('/auth/authenticate', {
+      ra: ra,
+      password: password
     });
 
-    const { _id } = response.data;
-    
-    localStorage.setItem('user', _id);
+    const { token } = response.data;
+
+    localStorage.setItem('token', token);
     history.push('/dashboard');
   }
   //function handleEmailChange(event){
   //  setEmail(event.target.value);
   //}
 
-    return (
-        <>
-            <p>
-            Ofereça <strong>spotes</strong> para programadores e encontre <strong>talentos</strong> para sua empresa
+  return (
+    <>
+      <p>
+        Gerencie o sistema de <strong>métricas</strong>.
             </p>
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="email">E-mail *</label>
-            <input
-                id="email"
-                type="email"
-                placeholder="Seu melhor e-mail"
-                value={email}
-                onChange={event => setEmail(event.target.value)}
-            />
-            <button className="btn" type="submit">Entrar</button>
-            </form>
-        </>
-    )
+      <form onSubmit={handleSubmit}>
+        <input
+          id="ra"
+          type="number"
+          placeholder="Digite seu RA"
+          value={ra}
+          onChange={event => setRa(event.target.value)}
+        />
+        <input
+          id="password"
+          type="password"
+          placeholder="Sua senha"
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+        />
+        <button className="btn" type="submit">Entrar</button>
+      </form>
+    </>
+  )
 }

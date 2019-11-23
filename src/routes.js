@@ -6,6 +6,12 @@ import Dashboard from './pages/Dashboard';
 import New from './pages/New';
 
 export default function Routes(){
+   // const token = localStorage.getItem('token');
+
+   // var rotaInicial = Login;
+  //  if(token != null)
+   // rotaInicial = Dashboard;
+   // console.log(token);
     return(
         <BrowserRouter>
             <Switch>
