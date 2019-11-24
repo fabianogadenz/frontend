@@ -4,6 +4,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import New from './pages/New';
+import NovoUsuario from './pages/Usuarios/NovoUsuario';
+import Usuarios from './pages/Usuarios/ListarUsuarios';
+import NovaArea from './pages/Areas/NovaArea';
+import NovaSubArea from './pages/Areas/NovaSubArea';
+import ListaAreas from './pages/Areas/ListarArea';
+
 
 export default function Routes(){
    // const token = localStorage.getItem('token');
@@ -18,6 +24,12 @@ export default function Routes(){
             <Route path="/" exact component={Login} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/new" component={New} />
+            <Route path="/novoUsuario" component={NovoUsuario} />
+            <Route path="/usuarios" component={Usuarios} />
+            <Route path="/novaArea" component={NovaArea} />
+            <Route path="/listaAreas" component={ListaAreas} />
+            <Route path="/novaSubArea" component={NovaSubArea} />
+
             </Switch>
         </BrowserRouter>
     )

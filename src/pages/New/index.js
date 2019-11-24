@@ -1,7 +1,6 @@
 import React, { useState, useMemo  } from 'react';
 
 import camera from '../../assets/camera.svg';
-import './styles.css';
 import api from '../../services/api';
 
 export default function New({ history }) {
