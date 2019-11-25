@@ -10,6 +10,9 @@ import NovaArea from './pages/Areas/NovaArea';
 import NovaSubArea from './pages/Areas/NovaSubArea';
 import ListaAreas from './pages/Areas/ListarArea';
 import ListaSubAreas from './pages/Areas/ListarSubAreas';
+import NovaTipoAtividade from './pages/TipoAtividade/NovaTipoAtividade';
+import ListaTipoAtividade from './pages/TipoAtividade/ListaTipoAtividade';
+import Planos from './pages/Planos';
 
 
 export default function Routes(){
@@ -31,6 +34,11 @@ export default function Routes(){
             <Route path="/listaAreas" component={ListaAreas} />
             <Route path="/novaSubArea" component={NovaSubArea} />
             <Route path="/listaSubAreas" component={ListaSubAreas} />
+            <Route path="/novaTipoAtividade" component={NovaTipoAtividade} />
+            <Route path="/listaTipoAtividade" component={ListaTipoAtividade} />
+            <Route path="/planos" component={Planos} />
+
+            
 
             </Switch>
         </BrowserRouter>

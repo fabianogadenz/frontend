@@ -20,6 +20,15 @@ export default function ListaAreas() {
         }
         loadSpots();
     }, [])
+    
+    async function excluir(arg, _id) {
+        const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
+        const response = await api.delete('/grandeArea/' + _id, {
+            headers: { "Authorization": token }
+        });
+        window.location.reload();
+        console.log(_id);
+    }
     return (
         <>
             <Table responsive>
@@ -41,10 +50,11 @@ export default function ListaAreas() {
                             <td>{area.createdAt}</td>
                            
                             <td>
-                                <ButtonGroup aria-label="Basic example">
-                                    <Button variant="primary" size="sm">Edit</Button>
-                                    <Button variant="danger" size="sm">-</Button>
-                                </ButtonGroup>
+                            <Button variant="danger"
+                                    size="sm"
+                                    onClick={(event) => excluir(event, area._id)}>
+                                    Excluir
+                                </Button>
                             </td>
                         </tr>
                     ))}

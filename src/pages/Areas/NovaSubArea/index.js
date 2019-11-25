@@ -4,9 +4,10 @@ import { Form, Col, Button } from 'react-bootstrap/'
 
 import './styles.css'
 export default function NovaSubArea({ history }) {
+
     const [nome, setNome] = useState('')
     const [descricao, setDescricao] = useState('')
-    const [area, setArea] = useState(1)
+    const [area, setArea] = useState(2)
     const [grandAreas, setGrandeAreas] = useState([])
 
 
@@ -19,6 +20,7 @@ export default function NovaSubArea({ history }) {
             });
 
             setGrandeAreas(response.data);
+           // setArea(response.data[0].area.grandeAreaNome)
         }
         loadSpots();
     }, [])
@@ -32,7 +34,7 @@ export default function NovaSubArea({ history }) {
             subAreaNome: nome,
             subAreaDescricao: descricao,
         },{headers: { "Authorization": token }});
-        //history.push('/dashboard');
+        history.push('/listaSubAreas');
     }
 
     const teste = event => {

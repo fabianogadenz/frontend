@@ -24,7 +24,7 @@ export default function NovaArea({ history }) {
           },{headers: { "Authorization": token }});
         
 
-        //history.push('/dashboard');
+        history.push('/listaAreas');
     }
 
   

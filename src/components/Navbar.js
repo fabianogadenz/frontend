@@ -33,14 +33,12 @@ function NavbarComponent() {
                         <NavDropdown.Item href="/listaSubAreas">Listar Sub-áreas</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Tipo Atividade" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#">Novo Tipo Atividade</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Listar Tipos de Atividade</NavDropdown.Item>
+                        <NavDropdown.Item href="/novaTipoAtividade">Novo Tipo Atividade</NavDropdown.Item>
+                        <NavDropdown.Item href="/listaTipoAtividade">Listar Tipos de Atividade</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link href="/planos">Planos</Nav.Link>
 
-                    <NavDropdown title="Plano de Trabalho" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#">Novo Plano </NavDropdown.Item>
-                        <NavDropdown.Item href="#">Listar Planos</NavDropdown.Item>
-                    </NavDropdown>
+                    
                     <Nav.Link href="#">Registrar Atividade</Nav.Link>
                     <Nav.Link href="#">Ranking</Nav.Link>
                 </Nav>

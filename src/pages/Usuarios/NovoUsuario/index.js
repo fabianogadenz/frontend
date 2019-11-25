@@ -144,7 +144,7 @@ export default function NovoUsuario({ history }) {
                         
                             type="switch"
                             id="custom-switch"
-                            label="Check this switch"
+                            label="Responsável?"
                             value={responsavel}
                         onChange={event => setResponsavel(!responsavel)} /> 
                     </Form.Group>
