@@ -25,21 +25,19 @@ export default function NovaSubArea({ history }) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const response = await api.post('/auth/authenticate', {
-            // ra: ra,
-            // password: password
-        });
-
-        const { token } = response.data;
-
-        localStorage.setItem('token', token);
-        history.push('/dashboard');
+        
+        const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
+        const response = await api.post('/subArea/register', {
+            grandeArea: area,
+            subAreaNome: nome,
+            subAreaDescricao: descricao,
+        },{headers: { "Authorization": token }});
+        //history.push('/dashboard');
     }
 
     const teste = event => {
         event.preventDefault();
- 
-        
+  
         console.log(area);
         console.log(nome);
         console.log(descricao);
@@ -51,7 +49,7 @@ export default function NovaSubArea({ history }) {
                 Cadastre uma <strong>nova sub-área</strong>.
             </p>
 
-            <Form onSubmit={teste}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Selecione a Área</Form.Label>
                     <Form.Control as="select"

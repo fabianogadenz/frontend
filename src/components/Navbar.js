@@ -28,9 +28,9 @@ function NavbarComponent() {
                     </NavDropdown>
                     <NavDropdown title="Áreas" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/novaArea">Nova Área</NavDropdown.Item>
-                    <NavDropdown.Item href="/listaAreas">Lista Áreas</NavDropdown.Item>
+                    <NavDropdown.Item href="/listaAreas">Listar Áreas</NavDropdown.Item>
                         <NavDropdown.Item href="/novaSubArea">Nova Sub-área</NavDropdown.Item>
-                        <NavDropdown.Item href="#">Listar Áreas</NavDropdown.Item>
+                        <NavDropdown.Item href="/listaSubAreas">Listar Sub-áreas</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Tipo Atividade" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#">Novo Tipo Atividade</NavDropdown.Item>

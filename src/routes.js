@@ -9,6 +9,7 @@ import Usuarios from './pages/Usuarios/ListarUsuarios';
 import NovaArea from './pages/Areas/NovaArea';
 import NovaSubArea from './pages/Areas/NovaSubArea';
 import ListaAreas from './pages/Areas/ListarArea';
+import ListaSubAreas from './pages/Areas/ListarSubAreas';
 
 
 export default function Routes(){
@@ -29,6 +30,7 @@ export default function Routes(){
             <Route path="/novaArea" component={NovaArea} />
             <Route path="/listaAreas" component={ListaAreas} />
             <Route path="/novaSubArea" component={NovaSubArea} />
+            <Route path="/listaSubAreas" component={ListaSubAreas} />
 
             </Switch>
         </BrowserRouter>
