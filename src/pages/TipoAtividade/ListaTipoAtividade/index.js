@@ -21,9 +21,15 @@ export default function ListaTipoAtividade() {
         loadSpots();
     }, [])
 
-    function excluir(arg, teste) {
-        arg.preventDefault();
-        console.log(teste);
+ 
+
+    async function excluir(arg, _id) {
+        const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
+        const response = await api.delete('/tipoAtividade/' + _id, {
+            headers: { "Authorization": token }
+        });
+        window.location.reload();
+        console.log(_id);
     }
 
     return (
@@ -32,7 +38,7 @@ export default function ListaTipoAtividade() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Id Referência</th>
+                        <th>Referência</th>
                         <th>Descricao</th>
                         <th>Pontuação</th>
                         <th>Pontuação Máxima</th>

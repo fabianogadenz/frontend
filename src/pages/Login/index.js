@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 import './styles.css' 
+import { Form, Col, Button } from 'react-bootstrap/'
 
 
 export default function Login({ history }) {
@@ -43,7 +44,8 @@ export default function Login({ history }) {
           value={password}
           onChange={event => setPassword(event.target.value)}
         />
-        <button className="btn" type="submit">Entrar</button>
+         <Button variant="primary" type="submit">
+                    Entrar </Button>
       </form>
     </>
   )

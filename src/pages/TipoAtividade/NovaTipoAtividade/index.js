@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../services/api';
-import { Form, Col, Button } from 'react-bootstrap/'
+import { Form, Col, Button, Alert } from 'react-bootstrap/'
 import ReactDOM from 'react-dom'
 export default function NovaTipoAtividade({ history }) {
 
@@ -40,7 +40,7 @@ export default function NovaTipoAtividade({ history }) {
             descricao: descricao,
             observacao: observacao,
         },{headers: { "Authorization": token }});
-        //history.push('/dashboard');
+        history.push('/listaTipoAtividade');
     }
 
     // const teste = event => {

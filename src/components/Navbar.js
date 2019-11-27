@@ -39,8 +39,8 @@ function NavbarComponent() {
                     <Nav.Link href="/planos">Planos</Nav.Link>
 
                     
-                    <Nav.Link href="#">Registrar Atividade</Nav.Link>
-                    <Nav.Link href="#">Ranking</Nav.Link>
+                    <Nav.Link href="/atividadeAdd">Registrar Atividade</Nav.Link>
+                    <Nav.Link href="/ranking">Ranking</Nav.Link>
                 </Nav>
 
             </Navbar.Collapse>

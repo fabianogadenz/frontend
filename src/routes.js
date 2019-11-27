@@ -13,6 +13,8 @@ import ListaSubAreas from './pages/Areas/ListarSubAreas';
 import NovaTipoAtividade from './pages/TipoAtividade/NovaTipoAtividade';
 import ListaTipoAtividade from './pages/TipoAtividade/ListaTipoAtividade';
 import Planos from './pages/Planos';
+import AtividadeAdd from './pages/AtividadeAdd';
+import Ranking from './pages/Ranking';
 
 
 export default function Routes(){
@@ -37,8 +39,8 @@ export default function Routes(){
             <Route path="/novaTipoAtividade" component={NovaTipoAtividade} />
             <Route path="/listaTipoAtividade" component={ListaTipoAtividade} />
             <Route path="/planos" component={Planos} />
-
-            
+            <Route path="/atividadeAdd" component={AtividadeAdd} />
+            <Route path="/ranking" component={Ranking} />
 
             </Switch>
         </BrowserRouter>

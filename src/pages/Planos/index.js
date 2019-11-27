@@ -4,10 +4,6 @@ import { CardGroup, Card, Button, ListGroup, Badge, Row, Col, Modal, Form} from 
 
 
 export default function Planos() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => {setShow(false);}
-    const handleShow = () => {setShow(true);}
 
     let newDate = new Date()
     let date = newDate.getFullYear();
@@ -66,7 +62,8 @@ export default function Planos() {
 
                     </ListGroup>
 
-                    <Button variant="primary"  onClick={handleShow}>Registrar</Button>
+                    <Button variant="primary">Registrar</Button>
+                    <Button  variant="secondary">Ver Atividades</Button>
                 </Card>
 
 
@@ -121,7 +118,11 @@ export default function Planos() {
 
                     </ListGroup>
 
+
                     <Button variant="primary">Registrar</Button>
+     <Button  variant="secondary">Ver Atividades</Button>
+                    
+                   
                 </Card>
 
                 <Card>
@@ -176,62 +177,12 @@ export default function Planos() {
                     </ListGroup>
 
                     <Button variant="primary">Registrar</Button>
+     <Button  variant="secondary">Ver Atividades</Button>
                 </Card>
             </CardGroup>
 
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                <Form >
-
-<Form.Group as={Col} controlId="formSubArea">
-            <Form.Label>Sub-área *</Form.Label>
-            <Form.Control as="select"
-            required>
-               
-                <option  > teste</option>
-           }
-            </Form.Control>
-        </Form.Group>
-
-    <Form.Row>
-    
-        <Form.Group as={Col} controlId="formIdReferencia">
-            <Form.Label>Quantidade</Form.Label>
-            <Form.Control
-            required
-                type="text"
-                placeholder="ex: 1A" />
-        </Form.Group>
-    </Form.Row>
-    
-    
-    <Form.Row>
-        <Form.Group as={Col} controlId="formObservacao">
-            <Form.Label>Observacao</Form.Label>
-            <Form.Control
-            as="textarea"
-                rows="2"
-                placeholder="Digite a observação aqui"/>
-        </Form.Group>
-    </Form.Row>
-    <Button variant="primary" type="submit">
-        Salvar </Button>
-</Form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-          </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-          </Button>
-                </Modal.Footer>
-            </Modal>
+           
 
         </>
     )
