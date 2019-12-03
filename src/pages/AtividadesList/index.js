@@ -5,56 +5,62 @@ import { Table, ButtonGroup, Col, Button } from 'react-bootstrap/';
 
 
 
-export default function ListaAreas() {
-    const [areas, setAreas] = useState([]);
+export default function ListaTipoAtividade() {
+    const [tipoAtividades, setTipoAtividades] = useState([]);
 
     useEffect(() => {
         async function loadSpots() {
+            // const user_id = localStorage.getItem('user');
             const token = localStorage.getItem('token');
             //const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
-            const response = await api.get('/grandeArea/findall/', {
+            const response = await api.get('/tipoAtividade/findall/', {
                 headers: { "Authorization": token }
             });
 
-            setAreas(response.data);
+            setTipoAtividades(response.data);
         }
         loadSpots();
     }, [])
-    
+
+ 
+
     async function excluir(arg, _id) {
         const token = localStorage.getItem('token');
         //const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
-        const response = await api.delete('/grandeArea/' + _id, {
+        const response = await api.delete('/tipoAtividade/' + _id, {
             headers: { "Authorization": token }
         });
         window.location.reload();
         console.log(_id);
     }
+
     return (
         <>
             <Table responsive>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nome</th>
-                        <th>Descriçãoo</th>
-                        <th>Criado em</th>
+                        <th>Referência</th>
+                        <th>Descricao</th>
+                        <th>Pontuação</th>
+                        <th>Pontuação Máxima</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {areas.map((area, index) => (
+                    {tipoAtividades.map((tpAtividade, index) => (
                         <tr>
                             <td>{index}</td>
-                            <td>{area.grandeAreaNome}</td>
-                            <td>{area.grandeAreaDescricao}</td>
-                            <td>{area.createdAt}</td>
-                           
+                            <td>{tpAtividade.idReferencia}</td>
+                            <td>{tpAtividade.descricao}</td>
+                            <td>{tpAtividade.pontuacao}</td>
+                            <td>{tpAtividade.pontuacaoMaxima}</td>
+
                             <td>
-                            <Button variant="danger"
-                                    size="sm"
-                                    onClick={(event) => excluir(event, area._id)}>
-                                    Excluir
+                                <Button variant="danger"
+                                 size="sm" 
+                                 onClick={(event) => excluir(event, tpAtividade._id)}>
+                                     Excluir
                                 </Button>
                             </td>
                         </tr>

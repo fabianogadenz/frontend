@@ -17,15 +17,25 @@ export default function NovoUsuario({ history }) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const response = await api.post('/auth/authenticate', {
+        console.log(responsavel);
+        var tipoCadastro = "professor";
+        responsavel? tipoCadastro = "admin" : tipoCadastro = "professor";
+        const response = await api.post('/auth/register', {
+            email:email,
+            nome:nome,
+            siape:siape,
             ra: ra,
-            password: password
+            departamento: departamento,
+            sigla: "DACOMP",
+            campus: campus,
+            tipoCadastro: tipoCadastro,
+            password: password,
+
         });
 
         const { token } = response.data;
-
-        localStorage.setItem('token', token);
-        history.push('/dashboard');
+        console.log(response.data);
+        history.push('/usuarios');
     }
 
     const teste = event => {
@@ -46,7 +56,7 @@ export default function NovoUsuario({ history }) {
                 Cadastre um <strong>novo usuário</strong>.
             </p>
 
-            <Form onSubmit={teste}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Row>
                     <Form.Group as={Col} controlId="formEmail">
                         <Form.Label>Email</Form.Label>

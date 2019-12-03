@@ -10,20 +10,20 @@ export default function ListaTipoAtividade() {
     const [quantidade, setQuantidade] = useState(0)
     const [show, setShow] = useState(false);
     const [validaQuantidade, setValidaQuantidade] = useState(false);
-
     const [nomeAtividade, setNomeAtividade] = useState("");
     const [pontosAtividade, setPontosAtividade] = useState(0);
     const [quantidadeCadastrada, setQuantidadeCadastrada] = useState(0);
     const [pontosCadastrada, setPontosCadastrada] = useState(0);
     const [pontosFuturos, setPontosFuturos] = useState(0);
     const [pontosMax, setPontosMax] = useState(0);
+    const [plano, setPlano] = useState(2019);
 
     const [idAtividade, setIdAtividade] = useState(0);
 
 
     const handleClose = () => { setShow(false); }
 
-    function abrirModal(arg, atividade) { 
+    function abrirModal(arg, atividade) {
         console.log(atividade);
         setIdAtividade(atividade._id);
         setNomeAtividade(atividade.descricao);
@@ -31,9 +31,14 @@ export default function ListaTipoAtividade() {
         setQuantidadeCadastrada(0);
         setPontosCadastrada(0);
         setPontosFuturos(0);
-        atividade.pontuacaoMaxima != null? setPontosMax(atividade.pontuacaoMaxima) : setPontosMax("não aplicável");
-        setShow(true); 
+        atividade.pontuacaoMaxima != null ? setPontosMax(atividade.pontuacaoMaxima) : setPontosMax("não aplicável");
+        setShow(true);
         setQuantidade(0);
+        const plano = localStorage.getItem('plano');
+        if(plano != null)
+            setPlano(plano);
+        else 
+            setPlano(2019)
 
     }
 
@@ -41,36 +46,36 @@ export default function ListaTipoAtividade() {
     async function calcular(event) {
         event.preventDefault();
         console.log(quantidade);
-        if(!Number(quantidade) > 0)
-         setValidaQuantidade(false)
-        else{
+        if (!Number(quantidade) > 0)
+            setValidaQuantidade(false)
+        else {
             setValidaQuantidade(true)
             var nova_pontuacao = (Number(quantidade) * Number(pontosAtividade)) + quantidadeCadastrada;
-            if(nova_pontuacao > pontosMax)
+            if (nova_pontuacao > pontosMax)
                 nova_pontuacao = pontosMax;
             setPontosFuturos(nova_pontuacao);
-
         }
-            
-         
     }
 
     async function enviar(event) {
         event.preventDefault();
         console.log(quantidade);
-        if(!Number(quantidade) > 0)
-         setValidaQuantidade(false)
+        if (!Number(quantidade) > 0)
+            setValidaQuantidade(false)
         else {
             setValidaQuantidade(true)
         }
-        
-        const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
-              const response = await api.post('/atividadeRegistro/register', {
+        const token = localStorage.getItem('token');
+        //const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZDc0MjVjZjYzMGYyM2QxMGI2MGZjOSIsImlhdCI6MTU3NDM4OTk0MCwiZXhwIjoxZSs0MX0.q7aIbbSVuxb9jG3b2ks2d-OlcoA4K9Rk15eO4xrdj-k";
+       // const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkZGZkYzcyOTk2MGI0M2FiODA4NTM0NiIsImlhdCI6MTU3NDk2Nzc3MywiZXhwIjoxZSs0MX0.zSrAX07h2sAWbzwvksM4sNNfPgpTVP4wD7mEEbOGq78";
+        console.log(token);
+       
+        const response = await api.post('/atividadeRegistro/register', {
             atividade_id: idAtividade,
-            plano_registro: 2019,
+            plano_registro: Number(plano),
             quantidade_registrado: quantidade
-        },{headers: { "Authorization": token }});
-        console.log("print "+ response.data);
+        }, { headers: { "Authorization": token } });
+        console.log("print " + response.data);
 
         setShow(false);
     }
@@ -87,11 +92,6 @@ export default function ListaTipoAtividade() {
         }
         loadSpots();
     }, [])
-
-    function excluir(arg, teste) {
-        arg.preventDefault();
-        console.log(teste);
-    }
 
     return (
         <>
@@ -119,8 +119,8 @@ export default function ListaTipoAtividade() {
                                 <Button variant="primary"
                                     size="sm"
                                     onClick={(event) => abrirModal(event, tpAtividade)}
-                                    //onClick={handleShow(tpAtividade)}
-                                    >
+                                //onClick={handleShow(tpAtividade)}
+                                >
                                     Inserir
                                 </Button>
                             </td>
@@ -128,9 +128,6 @@ export default function ListaTipoAtividade() {
                     ))}
                 </tbody>
             </Table>
-
-
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Informe a quantidade de horas</Modal.Title>
@@ -148,7 +145,7 @@ export default function ListaTipoAtividade() {
                             Quantidade já cadastrada: <strong>{quantidadeCadastrada}</strong>.
             </p>
                         <p>
-                                Você já possui <strong>{pontosCadastrada}</strong> pontos nessa atividade.
+                            Você já possui <strong>{pontosCadastrada}</strong> pontos nessa atividade.
             </p>
                         <Form.Row>
 
@@ -161,12 +158,10 @@ export default function ListaTipoAtividade() {
                                     onChange={event => setQuantidade(event.target.value)}
                                     placeholder="Insira a quantidade" />
                             </Form.Group>
-                            <Button variant="secondary"  onClick={calcular}>
+                            <Button variant="secondary" onClick={calcular}>
                                 Calcular
           </Button>
                         </Form.Row>
-            
-
                         <p>
                             Você ficará com: <strong>{pontosFuturos}</strong> pontos.
             </p>
@@ -177,7 +172,7 @@ export default function ListaTipoAtividade() {
 
                     </Form>
                     <Alert key={"idx"} variant={"danger"} show={!validaQuantidade}>
-    Quantidade deve ser maior que 0.
+                        Quantidade deve ser maior que 0.
   </Alert>
 
                 </Modal.Body>

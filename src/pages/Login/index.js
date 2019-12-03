@@ -16,9 +16,12 @@ export default function Login({ history }) {
     });
 
     const { token } = response.data;
+    console.log(response.data.user.tipoCadastro)
+    localStorage.setItem('tipoCadastro', response.data.user.tipoCadastro);
+    localStorage.setItem('token', "Bearer " + token);
 
-    localStorage.setItem('token', token);
-    history.push('/dashboard');
+
+    history.push('/planos');
   }
   //function handleEmailChange(event){
   //  setEmail(event.target.value);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -18,13 +18,17 @@ import Ranking from './pages/Ranking';
 
 
 export default function Routes(){
-   // const token = localStorage.getItem('token');
+    const isAuthenticated = localStorage.getItem('token') !== null;
+    const token = localStorage.getItem('token');
+    const tipoCadastro = localStorage.getItem('tipoCadastro');
 
-   // var rotaInicial = Login;
-  //  if(token != null)
-   // rotaInicial = Dashboard;
-   // console.log(token);
+
+    
+
+    console.log(token);
+    console.log(tipoCadastro);
     return(
+        
         <BrowserRouter>
             <Switch>
             <Route path="/" exact component={Login} />
@@ -41,8 +45,11 @@ export default function Routes(){
             <Route path="/planos" component={Planos} />
             <Route path="/atividadeAdd" component={AtividadeAdd} />
             <Route path="/ranking" component={Ranking} />
-
+           
+            <Route path="*" component={() => <h1>Page not found</h1>} />
+           
             </Switch>
         </BrowserRouter>
     )
 }
+//<Route component={Login} />
