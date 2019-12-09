@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect  } from 'react-router-dom';
 
+import { PrivateRoute } from './PrivateRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import New from './pages/New';
@@ -15,16 +16,15 @@ import ListaTipoAtividade from './pages/TipoAtividade/ListaTipoAtividade';
 import Planos from './pages/Planos';
 import AtividadeAdd from './pages/AtividadeAdd';
 import Ranking from './pages/Ranking';
+import ListaAtividadesRegistradas from './pages/AtividadesRegistradas';
+
+
 
 
 export default function Routes(){
     const isAuthenticated = localStorage.getItem('token') !== null;
     const token = localStorage.getItem('token');
     const tipoCadastro = localStorage.getItem('tipoCadastro');
-
-
-    
-
     console.log(token);
     console.log(tipoCadastro);
     return(
@@ -45,6 +45,9 @@ export default function Routes(){
             <Route path="/planos" component={Planos} />
             <Route path="/atividadeAdd" component={AtividadeAdd} />
             <Route path="/ranking" component={Ranking} />
+            
+
+            <PrivateRoute exat path="/listAtividadesRegistradas" component={ListaAtividadesRegistradas} />
            
             <Route path="*" component={() => <h1>Page not found</h1>} />
            

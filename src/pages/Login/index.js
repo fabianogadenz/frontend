@@ -15,6 +15,7 @@ export default function Login({ history }) {
       ra: ra,
       password: password
     });
+    
 
     const { token } = response.data;
     console.log(response.data.user.tipoCadastro)

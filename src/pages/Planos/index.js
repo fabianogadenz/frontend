@@ -30,7 +30,7 @@ export default function Planos({ history }) {
     }
     async function verAtividades(arg, id) {
         localStorage.setItem('plano', id);
-        console.log(id);
+        history.push('/listAtividadesRegistradas');
     }
     return (
         <>

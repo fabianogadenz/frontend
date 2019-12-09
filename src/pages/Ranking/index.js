@@ -17,8 +17,6 @@ export default function Ranking({ history }) {
         headers: { "Authorization": token }
       });
 
-      console.log(response.data);
-
       var numeros = []
       var perfis = []
       for (var i = 0; i < response.data.pontos.length; i++) {
