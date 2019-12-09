@@ -10,6 +10,7 @@ export default function Login({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(password);
     const response = await api.post('/auth/authenticate', {
       ra: ra,
       password: password
